@@ -6,7 +6,7 @@ COPY index.html tsconfig.json vite.config.ts ./
 COPY src ./src
 RUN npm run build
 
-FROM caddy:2.11.6-alpine@sha256:d44355d3c2149dc580ce2cac735955d1c08d3d00882c30489c241aa51a5c10d9
+FROM caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
 ENV XDG_CONFIG_HOME=/tmp/caddy-config XDG_DATA_HOME=/tmp/caddy-data
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=builder /src/dist /srv

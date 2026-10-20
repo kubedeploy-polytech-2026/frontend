@@ -4,3 +4,7 @@ dist
 *.log
 .env
 .env.*
+.tools/
+/image.tar
+/trivy.json
+/sbom.cdx.json
