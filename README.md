@@ -109,3 +109,8 @@ gh attestation verify oci://ghcr.io/kubedeploy-polytech-2026/frontend@sha256:<di
 make image
 IMAGE=kubedeploy-frontend:v0.1.0 bash scripts/test-image.sh
 ```
+
+Caddy 2.11.7 пересобирается со стандартными модулями на Go 1.27.3 с
+`golang.org/x/net` 0.60.0: готовый upstream binary содержит более старые
+версии с исправимыми HIGH-уязвимостями. В runtime-образ копируется только
+пересобранный binary; исходники и Go toolchain остаются в build stage.
