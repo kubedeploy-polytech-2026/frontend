@@ -6,12 +6,18 @@ COPY index.html tsconfig.json vite.config.ts ./
 COPY src ./src
 RUN npm run build
 
-FROM caddy:2.11.6-alpine@sha256:d44355d3c2149dc580ce2cac735955d1c08d3d00882c30489c241aa51a5c10d9
+# Rebuild the standard Caddy modules with patched Go and x/net versions.
+FROM golang:1.27.3-alpine@sha256:f2c872bcee949b7be9c490efd02b48a8a2fbf947cdf533f1c58525ec9d8170fd AS caddy-builder
+WORKDIR /src
+COPY docker/caddy/ ./
+RUN go mod tidy && CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/caddy .
+
+FROM caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+COPY --from=caddy-builder /out/caddy /usr/bin/caddy
 ENV XDG_CONFIG_HOME=/tmp/caddy-config XDG_DATA_HOME=/tmp/caddy-data
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=builder /src/dist /srv
-# Port 8080 needs no file capability, including with no-new-privileges.
-RUN setcap -r /usr/bin/caddy
+# The rebuilt binary has no file capabilities; it listens on port 8080.
 USER 10001:10001
 EXPOSE 8080
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

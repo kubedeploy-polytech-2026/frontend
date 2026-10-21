@@ -1,2 +1,6 @@
 node_modules/
 dist/
+.tools/
+/image.tar
+/trivy.json
+/sbom.cdx.json
