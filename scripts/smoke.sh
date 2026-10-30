@@ -54,7 +54,7 @@ import json
 import sys
 with open(sys.argv[1]) as response:
     body = json.load(response)
-assert body == {"service": "kubedeploy-backend", "version": "0.1.0"}, body
+assert body == {"service": "kubedeploy-backend", "version": "0.2.0"}, body
 PY
 
 curl --fail --silent --show-error --max-time 5 "$base_url/health" > "$work_dir/health"

@@ -65,7 +65,7 @@ footer {
 }
 
 .hero {
-  padding: clamp(4rem, 11vw, 9rem) 0 3rem;
+  padding: clamp(3rem, 6vw, 5rem) 0 3rem;
 }
 
 .eyebrow,
@@ -107,6 +107,75 @@ h1 span {
   border-top: 1px solid var(--ink);
   padding: 1.8rem 0 3rem;
 }
+
+.notes-section {
+  border-top: 1px solid var(--ink);
+  padding: 1.8rem 0 2rem;
+}
+
+.notes-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.note-form label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.note-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 10rem;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: rgb(255 255 255 / 45%);
+  color: var(--ink);
+  padding: 1rem;
+  font: inherit;
+  line-height: 1.6;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  color: #667067;
+  background: transparent;
+  border-color: #b5b9b0;
+  cursor: not-allowed;
+}
+
+.note-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.note-length, .note-meta { color: #526057; font-size: 0.75rem; }
+.save-feedback { min-height: 1.5rem; margin: 1rem 0 0; font-size: 0.85rem; }
+.notes-message { margin: 0; padding: 1rem 0; line-height: 1.6; }
+.notes-list { list-style: none; padding: 0; margin: 0; max-height: 30rem; overflow-y: auto; }
+.notes-list li { border-top: 1px solid var(--line); padding: 1rem 0 1.3rem; }
+.notes-list li:first-child { border-top-color: var(--ink); }
+.note-meta { display: flex; justify-content: space-between; gap: 1rem; }
+.notes-list p { margin: 0.8rem 0 0; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
 
 h2 {
   margin: 0;
@@ -201,6 +270,15 @@ footer {
 
   .status-card {
     grid-template-columns: 1fr;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-heading {
+    align-items: start;
+    flex-direction: column;
   }
 
   .summary {

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { type BackendVersion, getBackendVersion } from "./api";
+import { Notes } from "./Notes";
 
 type LoadState =
   | { status: "loading" }
@@ -33,14 +34,16 @@ export function App() {
       <section className="hero" aria-labelledby="page-title">
         <p className="eyebrow">KUBEDEPLOY / APPLICATION</p>
         <h1 id="page-title">
-          Платформа готова
-          <span>к следующему изменению.</span>
+          Мысли,
+          <span>которые остаются.</span>
         </h1>
         <p className="summary">
-          Первый экран приложения проверяет связь с Go API и показывает версию
-          работающего backend.
+          Сохраните мысль и вернитесь к ней позже. Записи останутся после
+          обновления страницы.
         </p>
       </section>
+
+      <Notes />
 
       <section className="status-card" aria-labelledby="backend-title" aria-live="polite">
         <div>

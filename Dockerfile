@@ -13,6 +13,7 @@ COPY docker/caddy/ ./
 RUN go mod tidy && CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/caddy .
 
 FROM caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+RUN apk upgrade --no-cache brotli-libs curl libcurl
 COPY --from=caddy-builder /out/caddy /usr/bin/caddy
 ENV XDG_CONFIG_HOME=/tmp/caddy-config XDG_DATA_HOME=/tmp/caddy-data
 COPY Caddyfile /etc/caddy/Caddyfile
