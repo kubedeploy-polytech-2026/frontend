@@ -35,7 +35,7 @@ export function App() {
         <p className="eyebrow">KUBEDEPLOY / APPLICATION</p>
         <h1 id="page-title">
           Мысли,
-          <span>которые остаются.</span>
+          <span>которые всегда под рукой.</span>
         </h1>
         <p className="summary">
           Сохраните мысль и вернитесь к ней позже. Записи останутся после
